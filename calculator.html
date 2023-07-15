@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="calc.css">
+</head>
+<body>
+<p class="title">CALCULATOR</p>
+<div class="textbox">
+<input type="text" id="input" readonly>
+<div class="calc">
+      <button class="b" style="width:4.8%" onclick="appendValue('(')">(</button>
+      <button class="b" style="width:4.8%" onclick="appendValue(')')">)</button>
+      <button class="b" style="width:4.8%" onclick="result()">ans</button>
+      <button class="b" style="width:4.8%" onclick="deleteLastchar()">del</button>
+      <button class="b" style="width:4.8%" onclick="clearInput()">clear</button>
+</div>
+<div class="calc">
+      <button class="b" style="width:4.8%" onclick="appendValue('7')">7</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('8')">8</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('9')">9</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('%')">%</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('Math.sqrt(')">√</button>
+</div>
+<div class="calc">
+      <button class="b" style="width:4.8%" onclick="appendValue('4')">4</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('5')">5</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('6')">6</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('*')">x</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('/')">÷</button>
+</div>
+<div class="calc">
+      <button class="b" style="width:4.8%" onclick="appendValue('1')">1</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('2')">2</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('3')">3</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('+')">+</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('-')">-</button>
+</div>
+<div class="calc">
+      <button class="b" style="width:4.8%" onclick="appendValue('.')">.</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('0')">0</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('+/-')">+/-</button>
+      <button class="b" style="width:10%" onclick="result()">ENTER</button>
+</div>
+<div class="calc">
+	<button class="b" style="width:10%" onclick="toggle_sci()">sci</button>
+</div>
+<div class="calc sci_buttons" style="display: none;">
+      <button class="b" style="width:4.8%" onclick="appendValue('Math.exp(')">exp</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('Math.log(')">log</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('Math.sin(')">sin()</button>
+      <button class="b" style="width:4.8%" onclick="appendValue('Math.cos(')">cos()</button>
+</div>
+</div>
+<script>
+var textField = document.getElementById("input");
+
+function appendValue(value) {
+    textField.value += value;
+}
+function clearInput() {
+      textField.value = "";
+}
+function deleteLastChar() {
+      textField.value = textField.value.slice(0, -1);
+}
+function result() {
+      try {
+        var result = eval(textField.value);
+        textField.value = result;
+      } catch (error) {
+        textField.value = "Invalid Expression";
+      }
+}
+
+function toggle_sci(){
+    let sciButtons=document.querySelector('.sci_buttons');
+    if (sciButtons.style.display=='none'){
+        sciButtons.style.display='flex';
+    }else{
+        sciButtons.style.display='none';
+    }
+}
+
+
+</script>
+</body>
+</html>
